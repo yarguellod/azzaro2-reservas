@@ -36,7 +36,7 @@ export const generateDepartments = () => {
   return departments;
 };
 
-export const DEPARTMENTS = generateDepartments();
+export const DEPARTMENTS = ['ADMIN', ...generateDepartments()];
 
 // Verifica si una fecha está dentro del rango permitido de anticipación
 export const isWithinAdvanceLimit = (date) => {

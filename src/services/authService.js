@@ -5,15 +5,22 @@ import { collection, query, where, getDocs } from 'firebase/firestore';
 // Simula autenticación con códigos de departamento
 export const authenticateUser = async (department, code) => {
   try {
-    // Buscar el departamento en la colección 'departments'
+    console.log('Attempting login with:', { department, code });
+
+    // First, let's see all departments in the collection
+    const allDepts = await getDocs(collection(db, 'departaments'));
+    console.log('All departments in Firebase:', allDepts.docs.map(d => ({ docId: d.id, ...d.data() })));
+
+    // Buscar el departamento en la colección 'departaments'
     const q = query(
-      collection(db, 'departments'),
+      collection(db, 'departaments'),
       where('id', '==', department),
       where('code', '==', code)
     );
-    
+
     const querySnapshot = await getDocs(q);
-    
+    console.log('Query result count:', querySnapshot.size);
+
     if (querySnapshot.empty) {
       return { success: false, error: 'Departamento o código incorrecto' };
     }
