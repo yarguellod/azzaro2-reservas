@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/azzaro2-reservas/static/css/main.0267049c.css",
+    "main.js": "/azzaro2-reservas/static/js/main.642438a8.js",
+    "static/js/239.2c99bccf.chunk.js": "/azzaro2-reservas/static/js/239.2c99bccf.chunk.js",
+    "static/js/213.3e335ec4.chunk.js": "/azzaro2-reservas/static/js/213.3e335ec4.chunk.js",
+    "static/js/455.1705484d.chunk.js": "/azzaro2-reservas/static/js/455.1705484d.chunk.js",
+    "index.html": "/azzaro2-reservas/index.html",
+    "main.0267049c.css.map": "/azzaro2-reservas/static/css/main.0267049c.css.map",
+    "main.642438a8.js.map": "/azzaro2-reservas/static/js/main.642438a8.js.map",
+    "239.2c99bccf.chunk.js.map": "/azzaro2-reservas/static/js/239.2c99bccf.chunk.js.map",
+    "213.3e335ec4.chunk.js.map": "/azzaro2-reservas/static/js/213.3e335ec4.chunk.js.map",
+    "455.1705484d.chunk.js.map": "/azzaro2-reservas/static/js/455.1705484d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0267049c.css",
+    "static/js/main.642438a8.js"
+  ]
+}
