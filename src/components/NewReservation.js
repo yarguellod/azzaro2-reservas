@@ -4,7 +4,7 @@ import { format, addHours, setHours, setMinutes } from 'date-fns';
 import { Timestamp } from 'firebase/firestore';
 import { createReservation } from '../services/reservationService';
 import { getSession } from '../services/authService';
-import { AREAS, validateReservation } from '../utils/validations';
+import { AREAS, DEPARTMENTS, validateReservation } from '../utils/validations';
 import '../styles/Modal.css';
 
 const NewReservation = ({ reservations, onClose, onSuccess }) => {
@@ -13,7 +13,8 @@ const NewReservation = ({ reservations, onClose, onSuccess }) => {
     area: AREAS.QUINCHO,
     date: format(new Date(), 'yyyy-MM-dd'),
     startTime: '18:00',
-    endTime: '22:00'
+    endTime: '22:00',
+    department: user.department
   });
   const [errors, setErrors] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -42,7 +43,7 @@ const NewReservation = ({ reservations, onClose, onSuccess }) => {
       }
 
       const reservation = {
-        department: user.department,
+        department: user.isAdmin ? formData.department : user.department,
         area: formData.area,
         startTime: startDate,
         endTime: endDate
@@ -94,11 +95,27 @@ const NewReservation = ({ reservations, onClose, onSuccess }) => {
         </div>
 
         <form onSubmit={handleSubmit} className="reservation-form">
+          {user.isAdmin && (
+            <div className="form-group">
+              <label>Departamento</label>
+              <select
+                name="department"
+                value={formData.department}
+                onChange={handleChange}
+                disabled={loading}
+              >
+                {DEPARTMENTS.filter(d => d !== 'ADMIN').map(dept => (
+                  <option key={dept} value={dept}>{dept}</option>
+                ))}
+              </select>
+            </div>
+          )}
+
           <div className="form-group">
             <label>Área</label>
-            <select 
-              name="area" 
-              value={formData.area} 
+            <select
+              name="area"
+              value={formData.area}
               onChange={handleChange}
               disabled={loading}
             >
